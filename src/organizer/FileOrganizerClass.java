@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
@@ -28,6 +30,8 @@ public class FileOrganizerClass {
 	}
 
 	public void processFiles(){
+		Collections.sort(folderPaths);
+		
 		for(Path folder:folderPaths){
 			addToFoldernames(folder);
 		}
@@ -38,9 +42,9 @@ public class FileOrganizerClass {
 				
 				//folder is found
 				if (a >= 0){
-				Path folder = Paths.get(folderPaths.get(a).toString());
-				moveFile(episode, folder);
-				reorderFolderpaths(a, renameFolder(folder.toString()));
+					Path folder = Paths.get(folderPaths.get(a).toString());
+					moveFile(episode, folder);
+					reorderFolderpaths(a, renameFolder(folder.toString()));
 				}
 				//folder not found
 				else{
@@ -106,7 +110,12 @@ public class FileOrganizerClass {
 	private void addToFoldernames(Path folder){
 		String newName = helper.prepareFolderList(folder);
 		folderNames.add(newName);
-		folderNames.sort(null);
+		
+        Collections.sort(folderNames, new Comparator<String>() {
+            public int compare(String show1, String show2) {
+                return show1.compareToIgnoreCase(show2);
+            }
+        }); 
 	}
 
 	private void reorderFolderpaths(int a, Path folder){
@@ -116,7 +125,7 @@ public class FileOrganizerClass {
 	
 	private void addToFolderpaths(Path folder){
 		folderPaths.add(renameFolder(folder.toString()));
-		folderPaths.sort(null);
+		Collections.sort(folderPaths);
 	}
 
 }

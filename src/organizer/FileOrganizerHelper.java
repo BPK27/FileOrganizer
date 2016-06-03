@@ -25,8 +25,6 @@ public class FileOrganizerHelper {
 
 	public String showParser(String episode) {
 		String showName;
-//		 Pattern p = Pattern.compile(" - (\\d*)x(\\d*).*");
-//		 String[] m = p.split(episode);
 		
 		 String[] m = episode.split(" - ");
 		 
@@ -81,14 +79,6 @@ public class FileOrganizerHelper {
 		return name + nameStruct + date;
 	}
 
-//	public List<String> prepareEpisodeList(List<Path> episodePaths) {
-//		List<String> cleanedList = new ArrayList<String>();
-//		
-//		for (Path episode : episodePaths){
-//			cleanedList.add(showParser(episode.getFileName().toString()));
-//		}
-//		return cleanedList;
-//	}
 
 	public String prepareFolderList(Path folderPath) {
 		
@@ -96,7 +86,10 @@ public class FileOrganizerHelper {
 	}
 	
 	private boolean checkShowFormat(Path file){
+
 		return file.getFileName().toString().contains(" - ");
 	}
+	
+    
 
 }
