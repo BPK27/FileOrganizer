@@ -61,7 +61,7 @@ public class FileOrganizerClass {
 				}
 			}
 	}
-	
+
 	private Path makeFolder(String showName) {
 		File dir = new File(showName);
 		dir.mkdir();

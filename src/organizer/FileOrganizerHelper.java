@@ -40,7 +40,8 @@ public class FileOrganizerHelper {
 	
 	public void readDirectory(String path){
 		Path dir = Paths.get(path);
-		
+		folderPaths.clear();	
+		episodePaths.clear();
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
 		    for (Path file: stream) {
 		        if (Files.isDirectory(file)){
